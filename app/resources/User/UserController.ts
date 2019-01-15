@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-import { createError, sendSuccess } from '../../lib/createError';
+import createError from '../../lib/createError';
 import User from './UserModel';
 
 export function createUser(req, res, next) {
@@ -28,7 +28,7 @@ export function createUser(req, res, next) {
 		return bcrypt.hash(password, 11);
 	}
 
-	function createNewUser(hash) { 
+	function createNewUser(hash: string) { 
 		const user = new User({
 			username,
 			password: hash
@@ -37,17 +37,18 @@ export function createUser(req, res, next) {
 		return user;
 	}
 
-	function saveUser(user) {
+	function saveUser(user: User) {
 		return user.save();
 	}
 
 	function handleSuccess() {
-		sendSuccess(res, 201, 'Account created successfully', [{
-			username
-		}]);
+		res.status(201).json({
+			status: 201,
+			message: 'Account created successfully'
+		});
 	}
 
-	function handleError(error) {
+	function handleError(error: Error) {
 		next(error);
 	}
 }
