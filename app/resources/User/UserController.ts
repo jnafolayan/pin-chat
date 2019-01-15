@@ -1,4 +1,6 @@
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
+
 
 import createError from '../../lib/createError';
 import User from './UserModel';
@@ -6,7 +8,7 @@ import User from './UserModel';
 export function createUser(req, res, next) {
 	const { username, password } = req.body;
 
-	checkIfUserExists()
+	findUser()
 		.then(abortIfUserExists)
 		.then(generateHash)
 		.then(createNewUser)
@@ -14,7 +16,7 @@ export function createUser(req, res, next) {
 		.then(handleSuccess)
 		.catch(handleError);
 
-	function checkIfUserExists() {
+	function findUser() {
 		return User.findOne({ username }).exec();
 	}
 
@@ -37,11 +39,59 @@ export function createUser(req, res, next) {
 		return user;
 	}
 
-	function saveUser(user: User) {
+	function saveUser(user) {
 		return user.save();
 	}
 
 	function handleSuccess() {
+		res.status(201).json({
+			status: 201,
+			message: 'Account created successfully'
+		});
+	}
+
+	function handleError(error: Error) {
+		next(error);
+	}
+}
+
+export function login(req, res, next) {
+	const { username, password } = req.body;
+
+	findUser()
+		.catch(abortLogin)
+		.then(verifyPassword)
+		.catch(abortLogin)
+		.then(generateToken)
+		.then(handleSuccess)
+		.catch(handleError);
+
+	function findUser() {
+		return User.findOne({ username }).exec();
+	}
+
+	function abortLogin() {
+		throw createError(403, 'User not found');
+	}
+
+	function verifyPassword(user) {
+		return bcrypt.compare(password, user.password)
+			.then(() => user);
+	}
+
+	function generateToken(user) {
+		const payload: object = {
+			user: username
+		};
+
+		const signOptions: object = {
+			expiresIn: '12h'
+		};
+
+		return jwt.sign(payload, process.env.JWT_SECRET, signOptions);
+	}
+
+	function handleSuccess(token) {
 		res.status(201).json({
 			status: 201,
 			message: 'Account created successfully'

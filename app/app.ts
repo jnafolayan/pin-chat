@@ -20,7 +20,7 @@ app.use((err, req, res, next) => {
 	if (err.restError) {
 		res.json({
 			status: err.status,
-			error: error.message
+			error: err.message
 		});
 	} else {
 		res.render('error');
