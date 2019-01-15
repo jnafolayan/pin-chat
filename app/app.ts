@@ -16,7 +16,15 @@ app.use((req, res, next) => {
 
 app.use((err, req, res, next) => {
 	res.status(err.status || 500)
-		.send('Error');
+
+	if (err.restError) {
+		res.json({
+			status: err.status,
+			error: error.message
+		});
+	} else {
+		res.render('error');
+	}
 });
 
 export default app;

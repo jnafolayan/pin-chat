@@ -32,11 +32,12 @@
   "homepage": "https://github.com/jnafolayan/pin-chat#readme",
   "dependencies": {
     "@types/express": "^4.16.0",
+    "body-parser": "^1.18.3",
     "dotenv": "^6.2.0",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
-    "simplewebrtc": "^3.0.2",
-    "webrtc-adapter": "^4.0.0"
+    "jsonwebtoken": "^8.4.0",
+    "mongoose": "^5.4.4"
   },
   "devDependencies": {
     "ts-loader": "^5.3.3",
