@@ -1,9 +1,12 @@
+import path from 'path';
 import express from 'express';
 
 // Resources
 import User from './resources/User';
 
 const app = express();
+
+app.use(express.static(path.resolve(__dirname, '../dist')));
 
 // Bind routes
 app.use('/users', User);
@@ -23,7 +26,7 @@ app.use((err, req, res, next) => {
 			error: err.message
 		});
 	} else {
-		res.render('error');
+		res.send('Eror 404');
 	}
 });
 

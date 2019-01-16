@@ -1,0 +1,238 @@
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+.wrapper {
+	position: relative;
+	background: linear-gradient(145deg, rgb(20, 22, 21), rgb(30,31,31), rgb(33, 33, 33)),
+				linear-gradient(215deg, #393, #444, #222);
+	margin: 0;
+	width: 100vw;
+	min-height: 100vh;
+	color: #fff;
+	font-size: 24px;
+	font-family: Dank Mono;
+
+	transform-origin: center;
+	perspective: 1000px;
+}
+
+.page {
+	width: 100vw;
+	height: 100vh;
+	padding: 0 20px;
+	margin: 0;
+	display: none;
+	transform-origin: center;
+	/*transition: all 0.3s;*/
+}
+
+.page.active {
+	display: block;
+}
+
+.page.active:not(.login) {
+	animation: flip 2s;
+}
+
+.navbar-brand {
+	text-align: center;
+	margin: 0;
+	padding: 1px 10px;
+}
+
+.navbar-brand span {
+	color: hsl(60, 100%, 50%);
+}
+
+.btn {
+	color: #444;
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 1rem;
+	background: hsl(60, 100%, 50%);
+	padding: 15px 10px;
+	outline: none;
+	border: none;
+	cursor: pointer;
+	transition: all 0.2s;
+}
+
+.btn:hover {
+	box-shadow: 0 4px 4px 10px rgba(20,20,20,0.2);
+	transform: translate(0, -4px);
+}
+
+
+
+
+/* Login */
+.brand-desc {
+	text-align: center;
+	font-size: 1.5rem;
+	font-weight: lighter;
+}
+
+.brand-desc:after {
+	content: '';
+	display: block;
+	position: relative;
+	width: 25px;
+	height: 25px;
+	border-top: 4px solid hsl(60, 100%, 50%);
+	border-right: 4px solid hsl(60, 100%, 50%);
+	margin: 30px auto;
+
+	transform: translate(0, -30%) rotate(135deg);
+	animation: bob 1s infinite ease;
+}
+
+.credentials {
+	font-size: 1.3rem;
+	text-align: center;
+	padding: 20px 10px;
+	margin-top: 30px;
+}
+
+.credentials input {
+	width: 400px;
+	max-width: 80vw;
+	padding: 10px 10px;
+	background: transparent;
+	border: none;
+	outline: none;
+	color: hsl(60, 100%, 50%);
+	text-align: center;
+	font-size: 1.3rem;
+	border-bottom: 1px solid #fff;
+	display: block;
+	margin: 0 auto;
+}
+
+.credentials .btn {
+	margin-top: 20px;
+	width: 100px;
+}
+
+
+/* Room */
+.clients-count {
+	font-style: italic;
+}
+
+.room-notice {
+	text-align: center;
+	font-size: 1.2rem;
+	font-weight: lighter;
+	margin-top: -30px;
+}
+
+.chatbox {
+	border: 1px solid #333;
+	min-height: 70vh;
+	width: 90vw;
+	max-width: 800px;
+	padding: 10px 10px;
+	margin: 0 auto;
+	box-shadow: -1px 4px 4px 10px rgba(10,10,10,0.2);
+	border-radius: 4px;
+	background: rgba(5,5,5,0.6);
+	font-size: 1rem;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+}
+
+.messages {
+	flex: 5 1 80%;
+	overflow: auto;
+	max-height: 60vh;
+	margin-bottom: 15px;
+}
+
+.messages :--webkit-scrollbar {
+	width: 0px;
+}
+
+.msg-input {
+	flex-basis: 10%;
+}
+
+.msg-input input {
+	border-radius: 4px;
+	width: 100%;
+	padding: 10px;
+	font-size: 1rem;
+	background: #fff;
+	border: none;
+	outline: none;
+}
+
+.msg {
+	margin-bottom: 15px;
+	padding: 10px 10px;
+	border-radius: 4px;
+	color: #000;
+	min-width: 300px;
+}
+
+.msg.own {
+	width: 80%;
+	background: hsl(60, 80%, 30%);
+	color: #fff;
+}
+
+.msg.cpu {
+	width: 65%;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	background: rgb(100,100,100);
+}
+
+.msg.other {
+	margin-left: auto;
+	width: 80%;
+	background: rgb(180,180,180);
+	color: #fff;
+}
+
+.msg .by {
+	display: block;
+	color: #000;
+	padding-bottom: 5px;
+	font-weight: bold;
+	font-family: Trebuchet MS;
+}
+
+.msg .body {
+	display: block;
+}
+
+@keyframes bob {
+	0% {
+		transform: translate(0, -30%) rotate(135deg);
+	}
+	50% {
+		transform: translate(0, 40%) rotate(135deg);
+	}
+	100% {
+		transform: translate(0, -30%) rotate(135deg);
+	}
+}
+
+@keyframes flip {
+	0% {
+		transform: rotateY(180deg) scale(0.4);
+		opacity: 0;
+	}
+	100% {
+		transform: rotateY(0deg) scale(0.9);
+		opacity: 1;
+	}
+}

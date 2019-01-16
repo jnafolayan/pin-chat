@@ -4,9 +4,9 @@
   "description": "websockets powered chat app",
   "main": "server/bin/www.js",
   "scripts": {
-    "start": "npm run serve",
+    "start": "npm run build && npm run serve",
     "serve": "node server/bin/www.js",
-    "build": "npm run ",
+    "build": "npm run build-ts && npm run build-webpack",
     "build-ts": "tsc",
     "build-webpack": "webpack",
     "watch": "start npm run watch-ts && start npm run watch-webpack && npm run watch-node",

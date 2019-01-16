@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>PinChat</title>
+		<link rel="stylesheet" type="text/css" href="main.css">
+	</head>
+	<body>
+		<div class="wrapper">
+			<div class="page login active">
+				<header class="navbar-brand">
+					<h2><span>Pin</span>Chat</h2>
+				</header>
+				<article class="brand-desc">
+					<p>A virtual chat system where you can hangout and discuss with <em>friends</em></p>
+				</article>
+				<article class="credentials">
+					<p>Get started by crafting a room nick!</p>
+					<form id="loginForm" action="" method="POST" onsubmit="return false;">
+						<input type="text" name="username" id="username" required>
+						<button class="btn enter-btn">ENTER</button>
+					</form>
+				</article>
+			</div>
+
+			<div class="page room">
+				<header class="navbar-brand center">
+					<h2><span>Pin</span>Chat</h2>
+				</header>
+				<article class="room-notice">
+					<p>There are <span class="clients-count">0</span> people in the chat. Say hi.</p>
+				</article>
+				<div class="chatbox">
+					<div class="messages">
+						
+					</div>
+					<div class="msg-input">
+						<input type="text" name="msg" id="userMsg" placeholder="Enter your message">
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="bundle.js"></script>
+	</body>
+</html>
